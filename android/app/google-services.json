@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "190456314170",
+    "project_id": "no-honbab-app",
+    "storage_bucket": "no-honbab-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190456314170:android:82cd5159f8f4e2757fb803",
+        "android_client_info": {
+          "package_name": "com.ts_no_honbab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "190456314170-lri8f0rs4gm8hn99uv8ejc8mgkupqdsi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ts_no_honbab",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "190456314170-acl1rahn8rmkpna0nfvk67aicu6rta68.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_GOKyB7-3r_tMyDDkSHjhPQjAZEdQr8Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "190456314170-acl1rahn8rmkpna0nfvk67aicu6rta68.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "190456314170-9o64kq62m9ia91st6bksdjjebomhv0bd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.no-honbab"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
