@@ -1,8 +1,21 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, ScrollView, Image } from "react-native";
-import { CreateMeetingButton, SearchImage, styles } from "./MeetingList.style";
-import { MainView, SearchInput, SearchView } from "./MeetingList.style";
+import { Image } from "react-native";
+import {
+  BannerImage,
+  BannerRemarketImage,
+  CreateMeetingButton,
+  SearchImage,
+  SubView,
+  SearchIcon,
+  MainView,
+  SearchInput,
+  SearchView,
+  SearchLocationText,
+  LocationSubWrapper,
+  SearchResultText,
+  TotalNumberResultText,
+} from "./MeetingList.style";
 
 const ListUI = ({ inputText, setInputText }) => {
   const navigation = useNavigation();
@@ -16,7 +29,7 @@ const ListUI = ({ inputText, setInputText }) => {
       </CreateMeetingButton>
       <SearchView>
         <SearchInput
-          style={{ paddingHorizontal: 20 }}
+          style={{ paddingHorizontal: 10 }}
           placeholder="검색어를 입력해 주세요"
           maxLength={25}
           value={inputText}
@@ -25,6 +38,24 @@ const ListUI = ({ inputText, setInputText }) => {
           source={require("../../../../public/meetings/search-bold.png")}
         />
       </SearchView>
+      <SubView>
+        <BannerImage
+          source={require("../../../../public/meetings/banner.png")}
+        />
+        <BannerRemarketImage
+          source={require("../../../../public/meetings/banner-remark.png")}
+        />
+      </SubView>
+      <SubView>
+        <LocationSubWrapper>
+          <SearchIcon
+            source={require("../../../../public/meetings/search-s.png")}
+          />
+          <SearchLocationText>강남역</SearchLocationText>
+          <SearchResultText>주변 검색된 결과입니다.</SearchResultText>
+        </LocationSubWrapper>
+        <TotalNumberResultText>100+ 건이 검색되었습니다.</TotalNumberResultText>
+      </SubView>
     </MainView>
   );
 };
