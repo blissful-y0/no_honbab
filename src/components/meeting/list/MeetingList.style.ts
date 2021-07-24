@@ -3,26 +3,28 @@ import { StyleSheet } from "react-native";
 
 export const MainView = styled.View`
   flex: 1;
-  padding-top: 8%;
+  padding-top: 10%;
   background-color: white;
   display: flex;
   align-items: center;
 `;
 export const SubView = styled.View`
-  padding-top: 10%;
+  padding-top: 5%;
+  width: 100%;
 `;
 
 export const SearchView = styled.View`
   display: flex;
   flex-direction: row;
   width: 90%;
+  height: 8%;
   align-items: center;
 `;
 
 export const CreateMeetingButton = styled.TouchableOpacity`
   position: absolute;
-  bottom: 15;
-  right: 25;
+  bottom: 5%;
+  right: 5%;
   z-index: 1;
 `;
 
@@ -31,10 +33,48 @@ export const SearchInput = styled.TextInput`
   border: 1.5px solid #e24e4a;
   border-radius: 15px;
   margin-right: 3%;
-  height: 80%;
+  height: 100%;
 `;
 
 export const SearchImage = styled.Image``;
+
+export const BannerImage = styled.Image`
+  width: 100%;
+`;
+
+export const BannerRemarketImage = styled.Image`
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 40%;
+  left: 28%;
+`;
+
+export const LocationSubWrapper = styled.View`
+  flex-direction: row;
+  align-items: center;
+  padding-left: 7%;
+  padding-bottom: 1%;
+`;
+
+export const SearchLocationText = styled.Text`
+  color: #e63832;
+  text-decoration-line: underline;
+`;
+
+export const SearchIcon = styled.Image`
+  margin-right: 4%;
+`;
+
+export const SearchResultText = styled.Text`
+  margin-left: 1%;
+`;
+
+export const TotalNumberResultText = styled.Text`
+  color: #bdbdbd;
+  padding-left: 14%;
+  font-size: 12px;
+`;
 
 export const styles = StyleSheet.create({
   subView: {
