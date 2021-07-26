@@ -11,9 +11,7 @@ const DatePickerView = styled.View`
 
 const ToogleButton = styled.TouchableOpacity``;
 
-function DatePickerUI({ toggleDatePicker, handleConfirm }) {
-  const [isPickerVisible, setPickerVisibility] = useState(false);
-
+function DatePickerUI({ isPickerVisible, toggleDatePicker, handleConfirm }) {
   return (
     <DatePickerView>
       <ToogleButton onPress={toggleDatePicker}></ToogleButton>

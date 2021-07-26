@@ -10,7 +10,7 @@ interface IProps {
 
 export const MainView = styled.View`
   flex: 1;
-  padding-top: 8%;
+  padding-top: 10%;
   background-color: white;
   display: flex;
   align-items: center;
