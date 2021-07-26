@@ -25,10 +25,11 @@ export const DdayWrapper = styled.View`
 
 export const LocationAndTimeWrapper = styled.View`
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   padding-left: 1%;
   width: 100%;
   justify-content: flex-start;
+  margin-top: 7%;
 `;
 
 export const DdayCountDown = styled.Text`
@@ -43,12 +44,26 @@ export const DdayCountDownNotifyingMessage = styled.Text`
 
 export const SelectedDateAndTime = styled.Text`
   color: #333333;
-  font-size: 13px;
+  font-size: 15px;
 `;
 
 export const SelectedLocation = styled.Text`
   color: #333333;
-  font-size: 13px;
+  font-size: 15px;
+`;
+
+export const TimeIcon = styled.Image`
+  margin-right: 2%;
+`;
+
+export const LocationIcon = styled.Image`
+  margin-right: 2%;
+`;
+
+export const LocationDetail = styled.Text`
+  font-size: 15px;
+  color: #bdbdbd;
+  margin-left: 5%;
 `;
 
 export const styles = StyleSheet.create({
