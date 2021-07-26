@@ -41,7 +41,7 @@ const ListUI = ({ inputText, setInputText }) => {
 
   return (
     <MainView>
-      <CreateMeetingButton>
+      <CreateMeetingButton onPress={() => navigation.navigate("모임 만들기")}>
         <Image
           source={require("../../../../public/meetings/create-button.png")}
         />
