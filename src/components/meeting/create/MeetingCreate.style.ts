@@ -1,4 +1,3 @@
-import { StyleSheet } from "react-native";
 import styled from "@emotion/native";
 
 export const MainView = styled.View`
@@ -20,6 +19,7 @@ export const DdayWrapper = styled.View`
   align-items: flex-start;
   padding-left: 1%;
   width: 100%;
+  padding-top: 2%;
   justify-content: flex-start;
 `;
 
@@ -29,17 +29,24 @@ export const LocationAndTimeWrapper = styled.View`
   padding-left: 1%;
   width: 100%;
   justify-content: flex-start;
-  margin-top: 7%;
+  padding-top: 7%;
+`;
+
+export const LocationWrapper = styled.View`
+  align-items: flex-start;
+  justify-content: center;
 `;
 
 export const DdayCountDown = styled.Text`
   color: #e24e4a;
   font-size: 13px;
   font-weight: bold;
+  margin-top: 3%;
 `;
 
 export const DdayCountDownNotifyingMessage = styled.Text`
   color: #bdbdbd;
+  margin-top: 1%;
 `;
 
 export const SelectedDateAndTime = styled.Text`
@@ -47,9 +54,13 @@ export const SelectedDateAndTime = styled.Text`
   font-size: 15px;
 `;
 
-export const SelectedLocation = styled.Text`
+export const SelectedLocation = styled.TextInput`
   color: #333333;
   font-size: 15px;
+  ::placeholder {
+    color: #333333;
+    font-weight: bold;
+  }
 `;
 
 export const TimeIcon = styled.Image`
@@ -64,87 +75,82 @@ export const LocationDetail = styled.Text`
   font-size: 15px;
   color: #bdbdbd;
   margin-left: 5%;
+  margin-top: 2%;
 `;
 
-export const styles = StyleSheet.create({
-  mainView: {
-    flex: 1,
-    paddingTop: 20,
-    paddingHorizontal: 20,
-    backgroundColor: "#ffffff",
-  },
-  textInput: {
-    marginBottom: 8,
-  },
-  remarksWrapper: {
-    flexDirection: "row",
-    marginBottom: 20,
-  },
-  subView: {
-    flexDirection: "row",
-    borderWidth: 1,
-    borderColor: "#bdbdbd",
-    alignItems: "center",
-    width: 320,
-    height: 40,
-    marginBottom: 10,
-    paddingLeft: 30,
-    backgroundColor: "#ffffff",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 1,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  tagImg: {
-    position: "absolute",
-    top: 0,
-    left: 10,
-  },
-  title: {
-    fontWeight: "bold",
-    fontSize: 12,
-    width: "30%",
-  },
-  text: {
-    fontSize: 12,
-  },
-  contentsWrapper: {
-    flexDirection: "row",
-    borderWidth: 1,
-    borderColor: "#bdbdbd",
-    paddingTop: 10,
-    width: 350,
-    height: 220,
-    marginBottom: 45,
-    paddingLeft: 30,
-    marginTop: 15,
-    backgroundColor: "#ffffff",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 1,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  button: {
-    marginLeft: 15,
-    width: "90%",
-    height: 40,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
-    borderColor: "#bdbdbd",
-    borderRadius: 20,
-  },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#ffffff",
-  },
-});
+export const DakePickerOpacity = styled.TouchableOpacity``;
+
+export const PostBoxOpacity = styled.TouchableOpacity``;
+
+export const MeetingInfoContainer = styled.View`
+  flex-direction: row;
+  border: 1px solid #bdbdbd;
+  width: 95%;
+  height: 50px;
+  margin-top: 5%;
+`;
+
+export const MeetingInfoContainerWrapper = styled.View`
+  flex: 1;
+  width: 100%;
+  margin-top: 2%;
+  align-items: center;
+`;
+
+export const MeetingContentsContainer = styled.View`
+  flex-direction: row;
+  border: 1px solid #bdbdbd;
+  width: 95%;
+  height: 250px;
+  margin-top: 5%;
+`;
+
+export const TagRed = styled.View`
+  margin-left: 2%;
+  width: 5%;
+  height: 65%;
+  background-color: #e24e4a;
+  border: 0px;
+`;
+
+export const TagBaige = styled.View`
+  margin-left: 2%;
+  width: 5%;
+  height: 65%;
+  background-color: #faa296;
+  border: 0px;
+`;
+
+export const TagOrange = styled.View`
+  margin-left: 2%;
+  width: 5%;
+  height: 65%;
+  background-color: #f9964d;
+  border: 0px;
+`;
+
+export const TagLongRed = styled.View`
+  margin-left: 2%;
+  width: 5%;
+  height: 13%;
+  background-color: #e24e4a;
+  border: 0px;
+`;
+
+export const MeetingHostInfo = styled.View`
+  width: 85%;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 7%;
+  /* justify-content: center; */
+`;
+
+export const HostSelectText = styled.Text`
+  width: 55%;
+  color: #333333;
+  font-weight: bold;
+`;
+
+export const HostText = styled.Text`
+  color: #333333;
+`;
