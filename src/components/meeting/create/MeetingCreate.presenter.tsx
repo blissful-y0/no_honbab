@@ -25,11 +25,20 @@ import {
   MeetingHostInfo,
   HostSelectText,
   HostText,
+  PickerWrapper,
+  ContentsInput,
+  ContentsInputText,
+  ContentsWrapper,
+  UploadButton,
+  UploadTouchArea,
+  Upload,
 } from "./MeetingCreate.style";
 import PostBox from "../../../commons/Postcode";
 import DatePickerUI from "../../../commons/DatePicker";
-import PickerUI from "../../../commons/FoodPicker";
-import { View, ScrollView } from "react-native";
+import FoodPickerUI from "../../../commons/FoodPicker";
+import RecuitmentPickerUi from "../../../commons/RecuitmentPicker";
+import { ScrollView } from "react-native";
+
 const CreateUI = ({
   toggleDatePicker,
   handleConfirm,
@@ -101,23 +110,33 @@ const CreateUI = ({
             <TagBaige />
             <MeetingHostInfo>
               <HostSelectText>모집 인원</HostSelectText>
-              <HostText>ㅁㄴㅇㄹ</HostText>
+              <PickerWrapper>
+                <RecuitmentPickerUi />
+              </PickerWrapper>
             </MeetingHostInfo>
           </MeetingInfoContainer>
           <MeetingInfoContainer>
             <TagOrange />
             <MeetingHostInfo>
               <HostSelectText>음식 종류</HostSelectText>
-              <HostText>민우</HostText>
+              <PickerWrapper>
+                <FoodPickerUI />
+              </PickerWrapper>
             </MeetingHostInfo>
           </MeetingInfoContainer>
           <MeetingContentsContainer>
             <TagLongRed />
+            <ContentsWrapper>
+              <ContentsInputText>모집글</ContentsInputText>
+              <ContentsInput multiline={true} />
+            </ContentsWrapper>
           </MeetingContentsContainer>
         </MeetingInfoContainerWrapper>
-        <View>
-          <PickerUI />
-        </View>
+        <UploadTouchArea>
+          <UploadButton>
+            <Upload>게시물 등록</Upload>
+          </UploadButton>
+        </UploadTouchArea>
       </MainView>
     </ScrollView>
   );

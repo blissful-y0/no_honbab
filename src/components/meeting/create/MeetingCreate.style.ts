@@ -103,6 +103,7 @@ export const MeetingContentsContainer = styled.View`
   width: 95%;
   height: 250px;
   margin-top: 5%;
+  align-items: flex-start;
 `;
 
 export const TagRed = styled.View`
@@ -138,19 +139,66 @@ export const TagLongRed = styled.View`
 `;
 
 export const MeetingHostInfo = styled.View`
-  width: 85%;
+  width: 80%;
   flex-direction: row;
   align-items: center;
   padding-left: 7%;
-  /* justify-content: center; */
 `;
 
 export const HostSelectText = styled.Text`
-  width: 55%;
+  width: 25%;
   color: #333333;
   font-weight: bold;
+  font-size: 14px;
 `;
 
 export const HostText = styled.Text`
   color: #333333;
+  font-size: 16px;
+`;
+
+export const PickerWrapper = styled.View`
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ContentsInput = styled.TextInput`
+  width: 95%;
+  color: #333333;
+  height: 80%;
+`;
+
+export const ContentsInputText = styled.Text`
+  width: 30%;
+  color: #333333;
+  font-weight: bold;
+  font-size: 14px;
+  padding-top: 10%;
+`;
+
+export const ContentsWrapper = styled.View`
+  width: 90%;
+  height: 100%;
+`;
+
+export const UploadButton = styled.View`
+  width: 90%;
+  height: 50px;
+  border: 0px;
+  background-color: #e24e4a;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const UploadTouchArea = styled.TouchableOpacity`
+  width: 100%;
+  align-items: center;
+  padding-top: 3%;
+`;
+
+export const Upload = styled.Text`
+  font-weight: bold;
+  font-size: 15px;
+  color: white;
 `;
