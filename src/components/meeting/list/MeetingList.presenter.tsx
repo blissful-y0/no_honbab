@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Image } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 import {
   BannerImage,
   BannerRemarketImage,
@@ -15,6 +15,25 @@ import {
   LocationSubWrapper,
   SearchResultText,
   TotalNumberResultText,
+  FetchedMeetings,
+  MeetingWrapper,
+  FoodType,
+  FoodTypeText,
+  MeetingDetail,
+  MeetingLimitText,
+  MeetingTitle,
+  MeetingDetailWrapper,
+  MeetingTimeText,
+  MeetingLocaitonTitle,
+  MeetingLocaiton,
+  MeetingLocationWrapper,
+  MeetingTimeLogo,
+  MeetingLocationWrapperForRow,
+  MeetingLocationLogo,
+  RealtimeMeetingDetail,
+  JoinedMemberStatusWrapper,
+  MemberText,
+  MemberJoinedstatusText,
 } from "./MeetingList.style";
 
 const ListUI = ({ inputText, setInputText }) => {
@@ -56,6 +75,40 @@ const ListUI = ({ inputText, setInputText }) => {
         </LocationSubWrapper>
         <TotalNumberResultText>100+ 건이 검색되었습니다.</TotalNumberResultText>
       </SubView>
+      <ScrollView style={{ width: "100%", height: "100%" }}>
+        <FetchedMeetings>
+          <MeetingWrapper>
+            <FoodType type="한식">
+              <FoodTypeText type="한식">한식</FoodTypeText>
+            </FoodType>
+            <MeetingDetail>
+              <RealtimeMeetingDetail>
+                <MeetingLimitText>5일 뒤 모집 마감</MeetingLimitText>
+                <JoinedMemberStatusWrapper>
+                  <MemberText>모집원</MemberText>
+                  <MemberJoinedstatusText>1 / 4</MemberJoinedstatusText>
+                </JoinedMemberStatusWrapper>
+              </RealtimeMeetingDetail>
+              <MeetingTitle>감자탕 먹을 사람 모여!!</MeetingTitle>
+              <MeetingDetailWrapper>
+                <MeetingTimeLogo
+                  source={require("../../../../public/meetings/time.png")}
+                />
+                <MeetingTimeText>2021-02-22 06:00 PM</MeetingTimeText>
+              </MeetingDetailWrapper>
+              <MeetingLocationWrapper>
+                <MeetingLocationWrapperForRow>
+                  <MeetingLocationLogo
+                    source={require("../../../../public/meetings/location.png")}
+                  />
+                  <MeetingLocaitonTitle>강남역 일미집</MeetingLocaitonTitle>
+                </MeetingLocationWrapperForRow>
+                <MeetingLocaiton>서울특별시 강남구 어쩌구</MeetingLocaiton>
+              </MeetingLocationWrapper>
+            </MeetingDetail>
+          </MeetingWrapper>
+        </FetchedMeetings>
+      </ScrollView>
     </MainView>
   );
 };
