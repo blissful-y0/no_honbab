@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@actbase/react-daum-postcode": "^0.9.3",
     "@apollo/client": "^3.3.21",
     "@emotion/native": "^11.0.0",
     "@emotion/react": "^11.4.0",

@@ -14,23 +14,25 @@ const MeetingNavigator = () => {
 
   return (
     <Stact.Navigator screenOptions={{ headerShown: false }}>
-      <Stact.Screen name="게시물 목록" component={ListPage} />
+      <Stact.Screen
+        name="게시물 목록"
+        options={{
+          headerShown: false,
+          headerTitle: "",
+          headerTintColor: "#e24e4a",
+        }}
+        component={ListPage}
+      />
       <Stact.Screen
         options={{
           headerShown: true,
-          headerTitleStyle: {
-            fontSize: 15,
-            fontWeight: "bold",
-            color: "#E24E4A",
-            marginLeft: -40,
-          },
           headerBackImage: () => (
             <Image
               style={{ marginLeft: 5 }}
               source={require("../../public/meetings/arrow-left.png")}
             />
           ),
-          headerTitle: "게시물 목록",
+          headerTitle: "",
         }}
         name="모임 만들기"
         component={CreatePage}

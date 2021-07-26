@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@actbase/react-daum-postcode@^0.9.3":
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/@actbase/react-daum-postcode/-/react-daum-postcode-0.9.3.tgz#e465d87b0e94ed93bd47fba16383a6b98896d87f"
+  integrity sha512-T+z6Iw6XmS/KNuOp8GGkmbX9OLMKFoSpusG8oWTVj+3YH/j87MdP+bB43382oVnRdArbUFUQYSjrTe+d2DSUeQ==
+
 "@apollo/client@^3.3.21":
   version "3.3.21"
   resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.3.21.tgz#2862baa4e1ced8c5e89ebe6fc52877fc64a726aa"
