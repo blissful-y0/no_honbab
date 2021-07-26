@@ -41,6 +41,16 @@ export const DdayCountDownNotifyingMessage = styled.Text`
   color: #bdbdbd;
 `;
 
+export const SelectedDateAndTime = styled.Text`
+  color: #333333;
+  font-size: 13px;
+`;
+
+export const SelectedLocation = styled.Text`
+  color: #333333;
+  font-size: 13px;
+`;
+
 export const styles = StyleSheet.create({
   mainView: {
     flex: 1,

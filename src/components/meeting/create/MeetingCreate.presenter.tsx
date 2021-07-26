@@ -6,13 +6,16 @@ import {
   DdayWrapper,
   LocationAndTimeWrapper,
   MainView,
+  SelectedDateAndTime,
+  SelectedLocation,
   TitleInput,
 } from "./MeetingCreate.style";
 import { Picker } from "@react-native-picker/picker";
 import PostBox from "../../../commons/Postcode";
 import { TouchableOpacity, Text } from "react-native";
+import DatePickerUI from "../../../commons/DatePicker";
 
-const CreateUI = ({}) => {
+const CreateUI = ({ toggleDatePicker, handleConfirm, selectedDate }) => {
   const navigation = useNavigation();
   const [modalOpen, setModalOpen] = useState(false);
   const handleModalOpen = () => {
@@ -28,11 +31,14 @@ const CreateUI = ({}) => {
           모집 삼십 분 전에 자동으로 마감됩니다.
         </DdayCountDownNotifyingMessage>
       </DdayWrapper>
-      <LocationAndTimeWrapper></LocationAndTimeWrapper>
-      {/* <TouchableOpacity onPress={() => handleModalOpen()}>
-        <Text>주소 찾기</Text>
-        <PostBox modalOpen={modalOpen} />
-      </TouchableOpacity> */}
+      <LocationAndTimeWrapper>
+        <SelectedDateAndTime>{selectedDate}</SelectedDateAndTime>
+        <SelectedLocation></SelectedLocation>
+        <DatePickerUI
+          handleConfirm={handleConfirm}
+          toggleDatePicker={toggleDatePicker}
+        />
+      </LocationAndTimeWrapper>
     </MainView>
   );
 };
