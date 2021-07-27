@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ListPage from "../screens/meeting";
 import CreatePage from "../screens/meeting/create";
 import { Image } from "react-native";
+import ReadPage from "../screens/meeting/read";
 
 const MeetingNavigator = () => {
   const Stact = createStackNavigator();
@@ -34,8 +35,22 @@ const MeetingNavigator = () => {
           ),
           headerTitle: "",
         }}
-        name="모임 만들기"
+        name="게시물 작성"
         component={CreatePage}
+      />
+      <Stact.Screen
+        options={{
+          headerShown: true,
+          headerBackImage: () => (
+            <Image
+              style={{ marginLeft: 5 }}
+              source={require("../../public/meetings/arrow-left.png")}
+            />
+          ),
+          headerTitle: "",
+        }}
+        name="게시물 읽기"
+        component={ReadPage}
       />
     </Stact.Navigator>
   );

@@ -1,0 +1,8 @@
+overwrite: true
+schema: "http://34.64.247.86:4000/graphql"
+generates:
+  ./src/commons/types/generated/types.d.ts:
+    plugins:
+      - typescript
+    config:
+      typesPrefix: I
