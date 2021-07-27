@@ -164,6 +164,7 @@ export const ContentsInput = styled.Text`
   width: 95%;
   color: #333333;
   height: 80%;
+  margin-top: 1%;
 `;
 
 export const ContentsInputText = styled.Text`
