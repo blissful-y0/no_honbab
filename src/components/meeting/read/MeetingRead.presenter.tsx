@@ -26,7 +26,6 @@ import {
   ContentsWrapper,
   UploadButton,
   UploadTouchArea,
-  Upload,
   LocationDetail,
   SelectedDateAndTime,
   JoinButton,
