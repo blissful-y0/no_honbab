@@ -34,6 +34,7 @@ import {
   JoinedMemberStatusWrapper,
   MemberText,
   MemberJoinedstatusText,
+  MeetingTouchOpacity,
 } from "./MeetingList.style";
 
 const ListUI = ({ inputText, setInputText }) => {
@@ -41,7 +42,7 @@ const ListUI = ({ inputText, setInputText }) => {
 
   return (
     <MainView>
-      <CreateMeetingButton onPress={() => navigation.navigate("모임 만들기")}>
+      <CreateMeetingButton onPress={() => navigation.navigate("게시물 작성")}>
         <Image
           source={require("../../../../public/meetings/create-button.png")}
         />
@@ -77,36 +78,40 @@ const ListUI = ({ inputText, setInputText }) => {
       </SubView>
       <ScrollView style={{ width: "100%", height: "100%" }}>
         <FetchedMeetings>
-          <MeetingWrapper>
-            <FoodType type="한식">
-              <FoodTypeText type="한식">한식</FoodTypeText>
-            </FoodType>
-            <MeetingDetail>
-              <RealtimeMeetingDetail>
-                <MeetingLimitText>5일 뒤 모집 마감</MeetingLimitText>
-                <JoinedMemberStatusWrapper>
-                  <MemberText>모집원</MemberText>
-                  <MemberJoinedstatusText>1 / 4</MemberJoinedstatusText>
-                </JoinedMemberStatusWrapper>
-              </RealtimeMeetingDetail>
-              <MeetingTitle>감자탕 먹을 사람 모여!!</MeetingTitle>
-              <MeetingDetailWrapper>
-                <MeetingTimeLogo
-                  source={require("../../../../public/meetings/time.png")}
-                />
-                <MeetingTimeText>2021-02-22 06:00 PM</MeetingTimeText>
-              </MeetingDetailWrapper>
-              <MeetingLocationWrapper>
-                <MeetingLocationWrapperForRow>
-                  <MeetingLocationLogo
-                    source={require("../../../../public/meetings/location.png")}
+          <MeetingTouchOpacity
+            onPress={() => navigation.navigate("게시물 읽기")}
+          >
+            <MeetingWrapper>
+              <FoodType type="한식">
+                <FoodTypeText type="한식">한식</FoodTypeText>
+              </FoodType>
+              <MeetingDetail>
+                <RealtimeMeetingDetail>
+                  <MeetingLimitText>5일 뒤 모집 마감</MeetingLimitText>
+                  <JoinedMemberStatusWrapper>
+                    <MemberText>모집원</MemberText>
+                    <MemberJoinedstatusText>1 / 4</MemberJoinedstatusText>
+                  </JoinedMemberStatusWrapper>
+                </RealtimeMeetingDetail>
+                <MeetingTitle>감자탕 먹을 사람 모여!!</MeetingTitle>
+                <MeetingDetailWrapper>
+                  <MeetingTimeLogo
+                    source={require("../../../../public/meetings/time.png")}
                   />
-                  <MeetingLocaitonTitle>강남역 일미집</MeetingLocaitonTitle>
-                </MeetingLocationWrapperForRow>
-                <MeetingLocaiton>서울특별시 강남구 어쩌구</MeetingLocaiton>
-              </MeetingLocationWrapper>
-            </MeetingDetail>
-          </MeetingWrapper>
+                  <MeetingTimeText>2021-02-22 06:00 PM</MeetingTimeText>
+                </MeetingDetailWrapper>
+                <MeetingLocationWrapper>
+                  <MeetingLocationWrapperForRow>
+                    <MeetingLocationLogo
+                      source={require("../../../../public/meetings/location.png")}
+                    />
+                    <MeetingLocaitonTitle>강남역 일미집</MeetingLocaitonTitle>
+                  </MeetingLocationWrapperForRow>
+                  <MeetingLocaiton>서울특별시 강남구 어쩌구</MeetingLocaiton>
+                </MeetingLocationWrapper>
+              </MeetingDetail>
+            </MeetingWrapper>
+          </MeetingTouchOpacity>
         </FetchedMeetings>
       </ScrollView>
     </MainView>

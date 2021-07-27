@@ -194,3 +194,5 @@ export const MemberJoinedstatusText = styled.Text`
   font-size: 12px;
   margin-left: 5%;
 `;
+
+export const MeetingTouchOpacity = styled.TouchableOpacity``;
