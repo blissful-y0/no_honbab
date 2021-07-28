@@ -49,6 +49,7 @@ const CreateUI = ({
   isPostboxVisible,
   setPostboxVisibility,
   selectedLocation,
+  user,
 }) => {
   const navigation = useNavigation();
 
@@ -103,7 +104,7 @@ const CreateUI = ({
             <TagRed />
             <MeetingHostInfo>
               <HostSelectText>주최자</HostSelectText>
-              <HostText>민성우</HostText>
+              <HostText>{user?._user?.displayName}</HostText>
             </MeetingHostInfo>
           </MeetingInfoContainer>
           <MeetingInfoContainer>

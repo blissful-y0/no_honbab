@@ -12,7 +12,6 @@ GoogleSignin.configure({
 
 function LandingPage() {
   const navigation = useNavigation();
-  const [user, setUser] = useState([]);
 
   const onGoogleButtonPress = async () => {
     try {
@@ -25,9 +24,9 @@ function LandingPage() {
       auth()
         .signInWithCredential(googleCredential)
         //@ts-ignore
-        .then((userCrendential) => setUser(userCrendential));
+        .then((userCrendential) => console.log(userCrendential));
 
-      return navigation.navigate("tabNavigator");
+      // return navigation.navigate("tabNavigator");
     } catch (error) {
       console.log(error);
     }
