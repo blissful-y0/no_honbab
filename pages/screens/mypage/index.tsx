@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
-import { Button, View } from "react-native";
+import { Button, View, Text } from "react-native";
 import auth from "@react-native-firebase/auth";
-import { AuthContext } from "../../../src/components/hoc/AuthProvider";
 
 const MyPage = () => {
   const logOut = async () => {
@@ -14,8 +13,15 @@ const MyPage = () => {
 
   return (
     <>
-      <View>
-        <Button title="hello" onPress={logOut}></Button>
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "pink",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Button title="logout" onPress={logOut} />
       </View>
     </>
   );

@@ -1,7 +1,5 @@
-import React, { useEffect, useContext, useState, createContext } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import "react-native-gesture-handler";
-import AuthPage from "./pages/navigation";
-import LandingPage from "./pages/navigation/landing";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./src/apollo/client";
 import auth from "@react-native-firebase/auth";

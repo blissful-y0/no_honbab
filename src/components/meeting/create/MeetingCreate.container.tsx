@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import CreateUI from "./MeetingCreate.presenter";
+import { AuthContext } from "../../../../App";
 
 function Create() {
+  const { user } = useContext(AuthContext);
   const options = {
     weekday: "long",
     year: "numeric",
@@ -24,8 +26,9 @@ function Create() {
 
   const togglePostBox = () => {
     setPostboxVisibility((prev) => !prev);
-    console.log("ssibal");
   };
+
+  console.log(user);
 
   const handleConfirm = (selectedDate) => {
     const date = selectedDate.toLocaleDateString("ko-KR", options);
@@ -45,6 +48,7 @@ function Create() {
       isPostboxVisible={isPostboxVisible}
       setPostboxVisibility={setPostboxVisibility}
       selectedLocation={selectedLocation}
+      user={user}
     />
   );
 }
