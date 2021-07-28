@@ -13,8 +13,6 @@ function List() {
   const [inputText, setInputText] = React.useState("");
   const { data } = useQuery<IQuery, IQueryFetchMeetingsArgs>(FETCH_MEETINGS);
 
-  console.log(data);
-
   return (
     <ListUI inputText={inputText} setInputText={setInputText} data={data} />
   );
