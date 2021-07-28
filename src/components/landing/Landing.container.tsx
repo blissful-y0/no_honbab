@@ -24,7 +24,7 @@ function LandingPage() {
       auth()
         .signInWithCredential(googleCredential)
         //@ts-ignore
-        .then((userCrendential) => setUser(userCrendential));
+        .then((userCrendential) => console.log(userCrendential));
 
       // return navigation.navigate("tabNavigator");
     } catch (error) {

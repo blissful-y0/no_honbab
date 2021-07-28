@@ -17,11 +17,11 @@ export function Chat() {
         },
       },
       {
-        _id: 1,
+        _id: 2,
         text: "HSADFSDFSADF developer",
         createdAt: "Tue Jul 25 2021 19:41:32 GMT+0900 (한국 표준시)",
         user: {
-          _id: 2,
+          _id: 3,
           name: "React Native",
           avatar: "https://placeimg.com/140/140/any",
         },
