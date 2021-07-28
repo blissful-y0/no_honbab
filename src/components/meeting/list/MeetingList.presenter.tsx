@@ -37,7 +37,7 @@ import {
   MeetingTouchOpacity,
 } from "./MeetingList.style";
 
-const ListUI = ({ inputText, setInputText }) => {
+const ListUI = ({ inputText, setInputText, data }) => {
   const navigation = useNavigation();
 
   return (
@@ -76,43 +76,49 @@ const ListUI = ({ inputText, setInputText }) => {
         </LocationSubWrapper>
         <TotalNumberResultText>100+ 건이 검색되었습니다.</TotalNumberResultText>
       </SubView>
-      <ScrollView style={{ width: "100%", height: "100%" }}>
-        <FetchedMeetings>
-          <MeetingTouchOpacity
-            onPress={() => navigation.navigate("게시물 읽기")}
-          >
-            <MeetingWrapper>
-              <FoodType type="한식">
-                <FoodTypeText type="한식">한식</FoodTypeText>
-              </FoodType>
-              <MeetingDetail>
-                <RealtimeMeetingDetail>
-                  <MeetingLimitText>5일 뒤 모집 마감</MeetingLimitText>
-                  <JoinedMemberStatusWrapper>
-                    <MemberText>모집원</MemberText>
-                    <MemberJoinedstatusText>1 / 4</MemberJoinedstatusText>
-                  </JoinedMemberStatusWrapper>
-                </RealtimeMeetingDetail>
-                <MeetingTitle>감자탕 먹을 사람 모여!!</MeetingTitle>
-                <MeetingDetailWrapper>
-                  <MeetingTimeLogo
-                    source={require("../../../../public/meetings/time.png")}
-                  />
-                  <MeetingTimeText>2021-02-22 06:00 PM</MeetingTimeText>
-                </MeetingDetailWrapper>
-                <MeetingLocationWrapper>
-                  <MeetingLocationWrapperForRow>
-                    <MeetingLocationLogo
-                      source={require("../../../../public/meetings/location.png")}
+      <ScrollView style={{ width: "100%", height: "100%", marginTop: "2%" }}>
+        {data?.fetchMeetings?.map((data) => (
+          <FetchedMeetings key={data._id}>
+            <MeetingTouchOpacity
+              onPress={() => navigation.navigate("게시물 읽기")}
+            >
+              <MeetingWrapper>
+                <FoodType type={data.foodType}>
+                  <FoodTypeText type={data.foodType}>
+                    {data.foodType}
+                  </FoodTypeText>
+                </FoodType>
+                <MeetingDetail>
+                  <RealtimeMeetingDetail>
+                    <MeetingLimitText>5일 뒤 모집 마감</MeetingLimitText>
+                    <JoinedMemberStatusWrapper>
+                      <MemberText>모집원</MemberText>
+                      <MemberJoinedstatusText>
+                        {data.countMember} / {data.recruitment}
+                      </MemberJoinedstatusText>
+                    </JoinedMemberStatusWrapper>
+                  </RealtimeMeetingDetail>
+                  <MeetingTitle>{data.title}</MeetingTitle>
+                  <MeetingDetailWrapper>
+                    <MeetingTimeLogo
+                      source={require("../../../../public/meetings/time.png")}
                     />
-                    <MeetingLocaitonTitle>강남역 일미집</MeetingLocaitonTitle>
-                  </MeetingLocationWrapperForRow>
-                  <MeetingLocaiton>서울특별시 강남구 어쩌구</MeetingLocaiton>
-                </MeetingLocationWrapper>
-              </MeetingDetail>
-            </MeetingWrapper>
-          </MeetingTouchOpacity>
-        </FetchedMeetings>
+                    <MeetingTimeText>{data.date}</MeetingTimeText>
+                  </MeetingDetailWrapper>
+                  <MeetingLocationWrapper>
+                    <MeetingLocationWrapperForRow>
+                      <MeetingLocationLogo
+                        source={require("../../../../public/meetings/location.png")}
+                      />
+                      <MeetingLocaitonTitle>강남역 일미집</MeetingLocaitonTitle>
+                    </MeetingLocationWrapperForRow>
+                    <MeetingLocaiton>{data.address}</MeetingLocaiton>
+                  </MeetingLocationWrapper>
+                </MeetingDetail>
+              </MeetingWrapper>
+            </MeetingTouchOpacity>
+          </FetchedMeetings>
+        ))}
       </ScrollView>
     </MainView>
   );

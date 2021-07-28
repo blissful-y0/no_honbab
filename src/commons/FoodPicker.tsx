@@ -39,7 +39,7 @@ export const PickerSelector = () => {
 
   const placeholderStyle = {
     color: "#333333",
-    fontSize: 10,
+    fontSize: 14,
   };
 
   return (
