@@ -21,6 +21,7 @@ const ChattingNavigator = () => {
               source={require("../../public/meetings/arrow-left.png")}
             />
           ),
+          //@ts-ignore
           headerTitle: route.params.user,
           headerBackTitleVisible: false,
           headerStyle: {

@@ -50,15 +50,31 @@ const CreateUI = ({
   setPostboxVisibility,
   selectedLocation,
   user,
+  selectedPlace,
+  title,
+  setTitle,
+  contents,
+  setContents,
+  setSelectedPlace,
+  setRecuitNumber,
+  setfoodType,
+  recuitNumber,
+  foodType,
+  dateDifference,
+  onClickUploadButton,
 }) => {
   const navigation = useNavigation();
 
   return (
     <ScrollView>
       <MainView>
-        <TitleInput placeholder="게시글 제목을 입력하세요."></TitleInput>
+        <TitleInput
+          placeholder="게시글 제목을 입력하세요."
+          onChangeText={(value) => setTitle(value)}
+          value={title}
+        />
         <DdayWrapper>
-          <DdayCountDown>00일 뒤 모집 마감 </DdayCountDown>
+          <DdayCountDown>{dateDifference}일 뒤 모집 마감 </DdayCountDown>
           <DdayCountDownNotifyingMessage>
             모집 삼십 분 전에 자동으로 마감됩니다.
           </DdayCountDownNotifyingMessage>
@@ -82,7 +98,11 @@ const CreateUI = ({
               <LocationIcon
                 source={require("../../../../public/meetings/location.png")}
               />
-              <SelectedLocation placeholder="강남역 맛집" />
+              <SelectedLocation
+                placeholder="만나고 싶은 장소가 있으신가요?"
+                value={selectedPlace}
+                onChangeText={(value) => setSelectedPlace(value)}
+              />
             </LocationAndTimeWrapper>
             <LocationDetail>{selectedLocation}</LocationDetail>
             <PostBox
@@ -112,7 +132,10 @@ const CreateUI = ({
             <MeetingHostInfo>
               <HostSelectText>모집 인원</HostSelectText>
               <PickerWrapper>
-                <RecuitmentPickerUi />
+                <RecuitmentPickerUi
+                  recuitNumber={recuitNumber}
+                  setRecuitNumber={setRecuitNumber}
+                />
               </PickerWrapper>
             </MeetingHostInfo>
           </MeetingInfoContainer>
@@ -121,7 +144,7 @@ const CreateUI = ({
             <MeetingHostInfo>
               <HostSelectText>음식 종류</HostSelectText>
               <PickerWrapper>
-                <FoodPickerUI />
+                <FoodPickerUI setfoodType={setfoodType} foodType={foodType} />
               </PickerWrapper>
             </MeetingHostInfo>
           </MeetingInfoContainer>
@@ -129,11 +152,15 @@ const CreateUI = ({
             <TagLongRed />
             <ContentsWrapper>
               <ContentsInputText>모집글</ContentsInputText>
-              <ContentsInput multiline={true} />
+              <ContentsInput
+                multiline={true}
+                onChangeText={(value) => setContents(value)}
+                value={contents}
+              />
             </ContentsWrapper>
           </MeetingContentsContainer>
         </MeetingInfoContainerWrapper>
-        <UploadTouchArea>
+        <UploadTouchArea onPress={onClickUploadButton}>
           <UploadButton>
             <Upload>게시물 등록</Upload>
           </UploadButton>

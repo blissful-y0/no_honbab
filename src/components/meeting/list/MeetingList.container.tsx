@@ -9,7 +9,6 @@ import {
 } from "../../../commons/types/generated/types";
 
 function List() {
-  const { user } = useContext(AuthContext);
   const [inputText, setInputText] = React.useState("");
   const { data } = useQuery<IQuery, IQueryFetchMeetingsArgs>(FETCH_MEETINGS);
 

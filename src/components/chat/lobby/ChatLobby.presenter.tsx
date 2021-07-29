@@ -25,11 +25,11 @@ function ChatLobbyUI({ user }) {
         <ListView>
           <ChatRoomContainer
             onPress={() =>
-              navigation.navigate("채팅", { user: user.displayName })
+              navigation.navigate("채팅", { user: user?.displayName })
             }
           >
             <ProfilePhoto
-              source={{ uri: `${user.photoURL}` }}
+              source={{ uri: `${user?.photoURL}` }}
               style={{ borderRadius: 400, width: 50, height: 50 }}
             />
             <MessageInfoWrapper>
