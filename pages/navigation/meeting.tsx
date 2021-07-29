@@ -33,7 +33,7 @@ const MeetingNavigator = () => {
               source={require("../../public/meetings/arrow-left.png")}
             />
           ),
-          headerTitle: "",
+          headerBackTitleVisible: false,
         }}
         name="게시물 작성"
         component={CreatePage}
@@ -47,7 +47,7 @@ const MeetingNavigator = () => {
               source={require("../../public/meetings/arrow-left.png")}
             />
           ),
-          headerTitle: "",
+          headerBackTitleVisible: false,
         }}
         name="게시물 읽기"
         component={ReadPage}
