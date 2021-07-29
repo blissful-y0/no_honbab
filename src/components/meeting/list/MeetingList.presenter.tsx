@@ -80,7 +80,9 @@ const ListUI = ({ inputText, setInputText, data }) => {
         {data?.fetchMeetings?.map((data) => (
           <FetchedMeetings key={data._id}>
             <MeetingTouchOpacity
-              onPress={() => navigation.navigate("게시물 읽기")}
+              onPress={() =>
+                navigation.navigate("게시물 읽기", { id: data._id })
+              }
             >
               <MeetingWrapper>
                 <FoodType type={data.foodType}>

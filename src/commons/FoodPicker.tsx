@@ -7,8 +7,7 @@ const View = styled.View`
   border: 1px solid black;
 `;
 
-export const PickerSelector = () => {
-  const [value, setValue] = useState("음식 종류");
+export const PickerSelector = ({ setfoodType, foodType }) => {
   const items = [
     {
       label: "한식",
@@ -33,8 +32,8 @@ export const PickerSelector = () => {
   ];
 
   const placeholder = {
-    value: value,
-    label: value,
+    value: foodType,
+    label: foodType,
   };
 
   const placeholderStyle = {
@@ -45,10 +44,10 @@ export const PickerSelector = () => {
   return (
     <RNPickerSelect
       placeholder={placeholder}
-      onValueChange={(value) => setValue(value)}
+      onValueChange={(value) => setfoodType(value)}
       items={items}
       style={{ placeholder: placeholderStyle }}
-      value={value}
+      value={foodType}
     />
   );
 };
