@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import auth from "@react-native-firebase/auth";
 import { AuthContext } from "../../../App";
 import MyPageUI from "./MyPage.presenter";
+import firestore from "@react-native-firebase/firestore";
 
 function MyPage() {
   const { user } = useContext(AuthContext);
