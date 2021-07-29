@@ -10,7 +10,7 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "generate": "graphql-codegen",
     "codegen": "graphql-codegen --config codegen.yml",
-    "ios 2": "react-native run-ios --simulator=\"iPhone SE (2nd generation)\""
+    "ios2": "react-native run-ios --simulator=\"iPhone SE (2nd generation)\""
   },
   "dependencies": {
     "@actbase/react-daum-postcode": "^0.9.3",

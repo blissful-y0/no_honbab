@@ -1,7 +1,7 @@
 import React from "react";
 import ReadUI from "./MeetingRead.presenter";
 
-function Read() {
+function Read({ navigation, route }) {
   return <ReadUI />;
 }
 
