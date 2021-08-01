@@ -41,11 +41,11 @@ function Create() {
   const [selectedPlace, setSelectedPlace] = useState("");
 
   const toggleDatePicker = () => {
-    setPickerVisibility((prev) => !prev);
+    setPickerVisibility((prevState) => !prevState);
   };
 
   const togglePostBox = () => {
-    setPostboxVisibility((prev) => !prev);
+    setPostboxVisibility((prevState) => !prevState);
   };
 
   const handleConfirm = (incomingDate) => {
