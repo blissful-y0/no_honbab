@@ -1,13 +1,7 @@
 import RNPickerSelect from "react-native-picker-select";
-import React, { useState } from "react";
-import styled from "@emotion/native";
+import React from "react";
 
-const View = styled.View`
-  width: 100%;
-  border: 1px solid black;
-`;
-
-export const PickerSelector = ({ setfoodType, foodType }) => {
+export const PickerSelector = ({ input, setInput }) => {
   const items = [
     {
       label: "한식",
@@ -32,8 +26,7 @@ export const PickerSelector = ({ setfoodType, foodType }) => {
   ];
 
   const placeholder = {
-    value: foodType,
-    label: foodType,
+    label: input.foodType,
   };
 
   const placeholderStyle = {
@@ -44,10 +37,10 @@ export const PickerSelector = ({ setfoodType, foodType }) => {
   return (
     <RNPickerSelect
       placeholder={placeholder}
-      onValueChange={(value) => setfoodType(value)}
+      onValueChange={(value) => setInput({ ...input, foodType: value })}
       items={items}
       style={{ placeholder: placeholderStyle }}
-      value={foodType}
+      value={input.foodType}
     />
   );
 };

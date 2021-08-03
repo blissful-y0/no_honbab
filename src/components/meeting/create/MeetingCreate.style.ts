@@ -166,7 +166,6 @@ export const PickerWrapper = styled.View`
 export const ContentsInput = styled.TextInput`
   width: 95%;
   color: #333333;
-  height: 80%;
 `;
 
 export const ContentsInputText = styled.Text`
@@ -182,11 +181,12 @@ export const ContentsWrapper = styled.View`
   height: 100%;
 `;
 
-export const UploadButton = styled.View`
+export const UploadButton = styled.TouchableOpacity`
   width: 90%;
   height: 50px;
   border: 0px;
-  background-color: #e24e4a;
+  background-color: ${(props) =>
+    props.disabled === true ? "#bdbdbd" : "#e24e4a"};
   justify-content: center;
   align-items: center;
 `;
