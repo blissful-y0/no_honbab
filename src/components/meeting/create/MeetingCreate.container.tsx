@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import CreateUI from "./MeetingCreate.presenter";
 import { AuthContext } from "../../../../App";
 import { useMutation } from "@apollo/client";
@@ -8,37 +8,77 @@ import {
   IMutationCreateMeetingArgs,
 } from "../../../commons/types/generated/types";
 import { useNavigation } from "@react-navigation/native";
+import firestore from "@react-native-firebase/firestore";
+
+type iInput = {
+  title: string;
+  dateLimit: number;
+  date: string;
+  longitude: number;
+  latitude: number;
+  host: {
+    _id: string;
+    name: string;
+  };
+  recruitment: number;
+  foodType: string;
+  contents: string;
+  address: string;
+  place: string;
+};
 
 function Create() {
   const { user } = useContext(AuthContext);
+
+  const navigation = useNavigation();
+  const options = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  };
+  const today = new Date();
+
   const [createMeeting] = useMutation<IMutation, IMutationCreateMeetingArgs>(
     CREATE_MEETING
   );
-  const navigation = useNavigation();
 
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const today = new Date();
-  const [dateDifference, setDateDifference] = useState(0);
+  const [input, setInput] = useState<iInput>({
+    title: "",
+    dateLimit: 0,
+    date: today.toLocaleDateString("ko-KR"),
+    longitude: 127.02761,
+    latitude: 37.498095,
+    host: {
+      //@ts-ignore
+      _id: user?.uid,
+      //@ts-ignore
+      name: user?.displayName,
+    },
+    recruitment: 0,
+    foodType: "음식 종류",
+    contents: "",
+    address: "장소를 검색하세요",
+    place: "",
+  });
+  const [flag, setFlag] = useState(true);
 
-  const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
-  const [recuitNumber, setRecuitNumber] = useState(0);
-  const [foodType, setfoodType] = useState("음식 종류");
+  useEffect(() => {
+    if (
+      input.title &&
+      input.dateLimit &&
+      input.recruitment &&
+      input.foodType &&
+      input.contents &&
+      input.address &&
+      input.place
+    )
+      return setFlag(false);
+  }, [input]);
 
-  const [selectedDate, setSelectedDate] = useState(
-    today.toLocaleDateString("ko-KR")
-  );
   const [isPickerVisible, setPickerVisibility] = useState(false);
-
-  const [selectedLocation, setselectedLocation] =
-    useState("모임의 위치를 선택해 주세요");
   const [isPostboxVisible, setPostboxVisibility] = useState(false);
-  const [selectedPlace, setSelectedPlace] = useState("");
 
   const toggleDatePicker = () => {
     setPickerVisibility((prevState) => !prevState);
@@ -49,35 +89,13 @@ function Create() {
   };
 
   const handleConfirm = (incomingDate) => {
-    const date = incomingDate.toLocaleDateString("ko-KR", options);
-    const time = incomingDate.toLocaleTimeString("ko-KR");
-    setSelectedDate(`${date} ${time}`);
-    setDateDifference(
-      Math.ceil((incomingDate.getTime() - today.getTime()) / (1000 * 3600 * 24))
+    let selecteddate = incomingDate.toLocaleDateString("ko-KR", options);
+    let difference = Math.ceil(
+      (incomingDate.getTime() - today.getTime()) / (1000 * 3600 * 24)
     );
+    setInput({ ...input, dateLimit: difference, date: selecteddate });
     toggleDatePicker();
   };
-
-  const [input, setInput] = useState({
-    title: title,
-    dateLimit: dateDifference,
-    date: selectedDate,
-    longitude: 127.02761,
-    latitude: 37.498095,
-    host: {
-      //@ts-ignore
-      _id: user.uid,
-      //@ts-ignore
-      name: user.displayName,
-    },
-    recruitment: recuitNumber,
-    foodType: foodType,
-    contents: contents,
-    address: "서울특별시 강남구 테헤란로 3",
-    place: selectedPlace,
-  });
-
-  console.log(foodType);
 
   const onClickUploadButton = async () => {
     try {
@@ -86,8 +104,11 @@ function Create() {
           createMeetingInput: input,
         },
       });
-      //@ts-ignore
-      navigation.navigate("게시물 읽기", { id: result.createMeeting });
+      const dbresult = await firestore()
+        .collection("chat")
+        .doc(result.data.createMeeting)
+        .set({});
+      navigation.navigate("게시물 읽기", { id: result.data.createMeeting });
     } catch (error) {
       console.log(error);
     }
@@ -97,26 +118,14 @@ function Create() {
     <CreateUI
       toggleDatePicker={toggleDatePicker}
       handleConfirm={handleConfirm}
-      selectedDate={selectedDate}
       isPickerVisible={isPickerVisible}
       togglePostBox={togglePostBox}
-      setselectedLocation={setselectedLocation}
       isPostboxVisible={isPostboxVisible}
-      setPostboxVisibility={setPostboxVisibility}
-      selectedLocation={selectedLocation}
       user={user}
-      selectedPlace={selectedPlace}
-      title={title}
-      setTitle={setTitle}
-      contents={contents}
-      setContents={setContents}
-      setSelectedPlace={setSelectedPlace}
-      setRecuitNumber={setRecuitNumber}
-      setfoodType={setfoodType}
-      foodType={foodType}
-      recuitNumber={recuitNumber}
-      dateDifference={dateDifference}
       onClickUploadButton={onClickUploadButton}
+      input={input}
+      setInput={setInput}
+      flag={flag}
     />
   );
 }

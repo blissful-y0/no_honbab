@@ -16,7 +16,7 @@ function Read({ navigation, route }) {
 
   console.log(data);
 
-  return <ReadUI />;
+  return <ReadUI data={data} />;
 }
 
 export default Read;

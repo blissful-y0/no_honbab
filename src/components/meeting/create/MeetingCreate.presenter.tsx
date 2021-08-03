@@ -42,26 +42,14 @@ import { ScrollView } from "react-native";
 const CreateUI = ({
   toggleDatePicker,
   handleConfirm,
-  selectedDate,
   isPickerVisible,
   togglePostBox,
-  setselectedLocation,
   isPostboxVisible,
-  setPostboxVisibility,
-  selectedLocation,
   user,
-  selectedPlace,
-  title,
-  setTitle,
-  contents,
-  setContents,
-  setSelectedPlace,
-  setRecuitNumber,
-  setfoodType,
-  recuitNumber,
-  foodType,
-  dateDifference,
   onClickUploadButton,
+  input,
+  setInput,
+  flag,
 }) => {
   const navigation = useNavigation();
 
@@ -70,11 +58,11 @@ const CreateUI = ({
       <MainView>
         <TitleInput
           placeholder="게시글 제목을 입력하세요."
-          onChangeText={(value) => setTitle(value)}
-          value={title}
+          onChangeText={(value) => setInput({ ...input, title: value })}
+          value={input.title}
         />
         <DdayWrapper>
-          <DdayCountDown>{dateDifference}일 뒤 모집 마감 </DdayCountDown>
+          <DdayCountDown>{input.dateLimit}일 뒤 모집 마감 </DdayCountDown>
           <DdayCountDownNotifyingMessage>
             모집 삼십 분 전에 자동으로 마감됩니다.
           </DdayCountDownNotifyingMessage>
@@ -84,7 +72,7 @@ const CreateUI = ({
             <TimeIcon
               source={require("../../../../public/meetings/time.png")}
             />
-            <SelectedDateAndTime>{selectedDate}</SelectedDateAndTime>
+            <SelectedDateAndTime>{input.date}</SelectedDateAndTime>
             <DatePickerUI
               isPickerVisible={isPickerVisible}
               handleConfirm={handleConfirm}
@@ -100,14 +88,14 @@ const CreateUI = ({
               />
               <SelectedLocation
                 placeholder="만나고 싶은 장소가 있으신가요?"
-                value={selectedPlace}
-                onChangeText={(value) => setSelectedPlace(value)}
+                value={input.place}
+                onChangeText={(value) => setInput({ ...input, place: value })}
               />
             </LocationAndTimeWrapper>
-            <LocationDetail>{selectedLocation}</LocationDetail>
+            <LocationDetail>{input.address}</LocationDetail>
             <PostBox
-              setPostboxVisibility={setPostboxVisibility}
-              setselectedLocation={setselectedLocation}
+              setInput={setInput}
+              input={input}
               togglePostBox={togglePostBox}
               isPostboxVisible={isPostboxVisible}
             />
@@ -132,10 +120,7 @@ const CreateUI = ({
             <MeetingHostInfo>
               <HostSelectText>모집 인원</HostSelectText>
               <PickerWrapper>
-                <RecuitmentPickerUi
-                  recuitNumber={recuitNumber}
-                  setRecuitNumber={setRecuitNumber}
-                />
+                <RecuitmentPickerUi setInput={setInput} input={input} />
               </PickerWrapper>
             </MeetingHostInfo>
           </MeetingInfoContainer>
@@ -144,7 +129,7 @@ const CreateUI = ({
             <MeetingHostInfo>
               <HostSelectText>음식 종류</HostSelectText>
               <PickerWrapper>
-                <FoodPickerUI setfoodType={setfoodType} foodType={foodType} />
+                <FoodPickerUI setInput={setInput} input={input} />
               </PickerWrapper>
             </MeetingHostInfo>
           </MeetingInfoContainer>
@@ -154,14 +139,16 @@ const CreateUI = ({
               <ContentsInputText>모집글</ContentsInputText>
               <ContentsInput
                 multiline={true}
-                onChangeText={(value) => setContents(value)}
-                value={contents}
+                onChangeText={(value) =>
+                  setInput({ ...input, contents: value })
+                }
+                value={input.contents}
               />
             </ContentsWrapper>
           </MeetingContentsContainer>
         </MeetingInfoContainerWrapper>
-        <UploadTouchArea onPress={onClickUploadButton}>
-          <UploadButton>
+        <UploadTouchArea>
+          <UploadButton disabled={flag} onPress={onClickUploadButton}>
             <Upload>게시물 등록</Upload>
           </UploadButton>
         </UploadTouchArea>

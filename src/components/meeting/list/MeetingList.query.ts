@@ -11,6 +11,7 @@ export const FETCH_MEETINGS = gql`
       countMember
       date
       address
+      place
     }
   }
 `;
