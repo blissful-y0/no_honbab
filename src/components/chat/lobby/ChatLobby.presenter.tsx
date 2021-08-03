@@ -34,7 +34,7 @@ function ChatLobbyUI({ user }) {
             />
             <MessageInfoWrapper>
               <DisplayNameAndCreatedAtWrapper>
-                <UserName>{user.displayName}</UserName>
+                <UserName>{user?.displayName}</UserName>
                 <UpdatedAt>2021년 07월 27일</UpdatedAt>
               </DisplayNameAndCreatedAtWrapper>
               <LatestMessage>안녕하세요!!</LatestMessage>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import CreateUI from "./MeetingCreate.presenter";
 import { AuthContext } from "../../../../App";
 import { useMutation } from "@apollo/client";
@@ -8,15 +8,35 @@ import {
   IMutationCreateMeetingArgs,
 } from "../../../commons/types/generated/types";
 import { useNavigation } from "@react-navigation/native";
+import firestore from "@react-native-firebase/firestore";
+
+type iInput = {
+  title: string;
+  dateLimit: number;
+  date: string;
+  longitude: number;
+  latitude: number;
+  host: {
+    _id: string;
+    name: string;
+  };
+  recruitment: number;
+  foodType: string;
+  contents: string;
+  address: string;
+  place: string;
+};
 
 function Create() {
   const { user } = useContext(AuthContext);
+
   const navigation = useNavigation();
   const options = {
-    weekday: "long",
     year: "numeric",
-    month: "long",
+    month: "numeric",
     day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   };
   const today = new Date();
 
@@ -24,24 +44,38 @@ function Create() {
     CREATE_MEETING
   );
 
-  const [input, setInput] = useState({
+  const [input, setInput] = useState<iInput>({
     title: "",
     dateLimit: 0,
-    date: today.toLocaleDateString("kor-KR"),
-    longitude: 0,
-    latitude: 0,
+    date: today.toLocaleDateString("ko-KR"),
+    longitude: 127.02761,
+    latitude: 37.498095,
     host: {
-      _id: user.id,
-      name: user.displayName,
+      //@ts-ignore
+      _id: user?.uid,
+      //@ts-ignore
+      name: user?.displayName,
     },
     recruitment: 0,
-    foodType: "",
+    foodType: "음식 종류",
     contents: "",
-    address: "",
+    address: "장소를 검색하세요",
     place: "",
   });
+  const [flag, setFlag] = useState(true);
 
-  const [dateDifference, setDateDifference] = useState(0);
+  useEffect(() => {
+    if (
+      input.title &&
+      input.dateLimit &&
+      input.recruitment &&
+      input.foodType &&
+      input.contents &&
+      input.address &&
+      input.place
+    )
+      return setFlag(false);
+  }, [input]);
 
   const [isPickerVisible, setPickerVisibility] = useState(false);
   const [isPostboxVisible, setPostboxVisibility] = useState(false);
@@ -55,12 +89,11 @@ function Create() {
   };
 
   const handleConfirm = (incomingDate) => {
-    const date = incomingDate.toLocaleDateString("ko-KR", options);
-    const time = incomingDate.toLocaleTimeString("ko-KR");
-    setInput(...input, date: `${date} ${time}`,);
-    setDateDifference(
-      Math.ceil((incomingDate.getTime() - today.getTime()) / (1000 * 3600 * 24))
+    let selecteddate = incomingDate.toLocaleDateString("ko-KR", options);
+    let difference = Math.ceil(
+      (incomingDate.getTime() - today.getTime()) / (1000 * 3600 * 24)
     );
+    setInput({ ...input, dateLimit: difference, date: selecteddate });
     toggleDatePicker();
   };
 
@@ -68,11 +101,14 @@ function Create() {
     try {
       const result = await createMeeting({
         variables: {
-          // createMeetingInput: input,
+          createMeetingInput: input,
         },
       });
-      //@ts-ignore
-      navigation.navigate("게시물 읽기", { id: result.createMeeting });
+      const dbresult = await firestore()
+        .collection("chat")
+        .doc(result.data.createMeeting)
+        .set({});
+      navigation.navigate("게시물 읽기", { id: result.data.createMeeting });
     } catch (error) {
       console.log(error);
     }
@@ -82,26 +118,14 @@ function Create() {
     <CreateUI
       toggleDatePicker={toggleDatePicker}
       handleConfirm={handleConfirm}
-      selectedDate={selectedDate}
       isPickerVisible={isPickerVisible}
       togglePostBox={togglePostBox}
-      setselectedLocation={setselectedLocation}
       isPostboxVisible={isPostboxVisible}
-      setPostboxVisibility={setPostboxVisibility}
-      selectedLocation={selectedLocation}
       user={user}
-      selectedPlace={selectedPlace}
-      title={title}
-      setTitle={setTitle}
-      contents={contents}
-      setContents={setContents}
-      setSelectedPlace={setSelectedPlace}
-      setRecuitNumber={setRecuitNumber}
-      setfoodType={setfoodType}
-      foodType={foodType}
-      recuitNumber={recuitNumber}
-      dateDifference={dateDifference}
       onClickUploadButton={onClickUploadButton}
+      input={input}
+      setInput={setInput}
+      flag={flag}
     />
   );
 }

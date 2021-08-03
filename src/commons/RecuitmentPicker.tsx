@@ -1,26 +1,24 @@
 import RNPickerSelect from "react-native-picker-select";
 import React, { useState } from "react";
 
-export const PickerSelector = ({ setRecuitNumber, recuitNumber }) => {
-  const [value, setValue] = useState("모집 인원");
+export const PickerSelector = ({ input, setInput }) => {
   const items = [
     {
       label: "2명",
-      value: "2명",
+      value: 2,
     },
     {
       label: "3명",
-      value: "3명",
+      value: 3,
     },
     {
       label: "4명",
-      value: "4명",
+      value: 4,
     },
   ];
 
   const placeholder = {
-    value: "모집 인원",
-    label: "모집 인원",
+    label: input.recruitment === 0 ? "모집 인원" : `${input.recruitment}명`,
   };
 
   const placeholderStyle = {
@@ -31,9 +29,9 @@ export const PickerSelector = ({ setRecuitNumber, recuitNumber }) => {
   return (
     <RNPickerSelect
       placeholder={placeholder}
-      onValueChange={(value) => setRecuitNumber(value)}
+      onValueChange={(value) => setInput({ ...input, recruitment: value })}
       items={items}
-      value={recuitNumber}
+      value={input.recruitment}
       style={{ placeholder: placeholderStyle }}
     />
   );

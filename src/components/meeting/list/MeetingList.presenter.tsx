@@ -92,7 +92,9 @@ const ListUI = ({ inputText, setInputText, data }) => {
                 </FoodType>
                 <MeetingDetail>
                   <RealtimeMeetingDetail>
-                    <MeetingLimitText>5일 뒤 모집 마감</MeetingLimitText>
+                    <MeetingLimitText>
+                      {data.dateLimit}일 뒤 모집 마감
+                    </MeetingLimitText>
                     <JoinedMemberStatusWrapper>
                       <MemberText>모집원</MemberText>
                       <MemberJoinedstatusText>
@@ -112,7 +114,7 @@ const ListUI = ({ inputText, setInputText, data }) => {
                       <MeetingLocationLogo
                         source={require("../../../../public/meetings/location.png")}
                       />
-                      <MeetingLocaitonTitle>강남역 일미집</MeetingLocaitonTitle>
+                      <MeetingLocaitonTitle>{data.place}</MeetingLocaitonTitle>
                     </MeetingLocationWrapperForRow>
                     <MeetingLocaiton>{data.address}</MeetingLocaiton>
                   </MeetingLocationWrapper>

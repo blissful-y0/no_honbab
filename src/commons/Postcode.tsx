@@ -15,12 +15,7 @@ const PostboxTabout = styled.TouchableWithoutFeedback`
   height: 100%;
 `;
 
-const YourView = ({
-  setPostboxVisibility,
-  setselectedLocation,
-  togglePostBox,
-  isPostboxVisible,
-}) => {
+const YourView = ({ input, setInput, togglePostBox, isPostboxVisible }) => {
   return (
     <Modal transparent={true} visible={isPostboxVisible}>
       <PostboxTabout onPress={togglePostBox}>
@@ -31,7 +26,7 @@ const YourView = ({
               //@ts-ignore
               jsOptions={{ animated: true, hideMapBtn: true }}
               onSelected={(data) => {
-                setselectedLocation(data.address);
+                setInput({ ...input, address: data.address });
                 togglePostBox();
               }}
             />
