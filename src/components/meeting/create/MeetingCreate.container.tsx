@@ -51,7 +51,9 @@ function Create() {
     longitude: 127.02761,
     latitude: 37.498095,
     host: {
+      //@ts-ignore
       _id: user?.uid,
+      //@ts-ignore
       name: user?.displayName,
     },
     recruitment: 0,

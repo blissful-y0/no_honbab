@@ -1,37 +1,24 @@
 import React from "react";
 import ChatLobbyUI from "./ChatLobby.presenter";
 import { AuthContext } from "../../../../App";
-import { useContext, useState, useEffect } from "react";
-import firestore from "@react-native-firebase/firestore";
+import { useContext } from "react";
+import firstore from "@react-native-firebase/firestore";
+import { SnapshotViewIOSBase } from "react-native";
 
 function ChatLobby() {
   const { user } = useContext(AuthContext);
-  const userRef = firestore().collection("users");
-  const chatRef = firestore().collection("chat");
-  const [joinedArray, setJoinedArray] = useState([]);
 
-  useEffect(() => {
-    getJoinedArray();
-    getChannel();
-  }, []);
-
-  const getJoinedArray = async () => {
-    const result = await userRef
-      .doc(user.uid)
+  const getUser = async () => {
+    await firstore()
+      .collection("users")
+      .doc("1OZuPRUA2hyV3PaOwq5g")
       .get()
-      .then((doc) => setJoinedArray(doc.data().meetingID));
-  };
-
-  const getChannel = async () => {
-    const snapshot = await chatRef
-      .doc(joinedArray[0])
-      .collection(user.uid)
-      .get();
-    const documents = [];
-    snapshot.forEach((doc) => {
-      documents[doc.id] = doc.data();
-    });
-    return console.log(documents);
+      .then((documentSnapshot) => {
+        console.log("User exists: ", documentSnapshot.exists);
+        if (documentSnapshot.exists) {
+          console.log("User data: ", documentSnapshot.data());
+        }
+      });
   };
 
   return <ChatLobbyUI user={user} />;

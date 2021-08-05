@@ -180,16 +180,16 @@ export const ContentsWrapper = styled.View`
   height: 100%;
 `;
 
-export const UploadButton = styled.TouchableOpacity`
+export const UploadButton = styled.View`
   width: 90%;
   height: 50px;
   border: 0px;
-  background-color: ${(props) => (props.disabled ? "#bdbdbd" : "#e24e4a")};
+  background-color: #e24e4a;
   justify-content: center;
   align-items: center;
 `;
 
-export const UploadTouchArea = styled.View`
+export const UploadTouchArea = styled.TouchableOpacity`
   width: 100%;
   align-items: center;
   padding-top: 3%;
