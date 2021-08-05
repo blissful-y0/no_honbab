@@ -31,7 +31,7 @@ function ChatLobby() {
     snapshot.forEach((doc) => {
       documents[doc.id] = doc.data();
     });
-    return;
+    return console.log(documents);
   };
 
   return <ChatLobbyUI user={user} />;
