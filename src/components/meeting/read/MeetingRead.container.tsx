@@ -44,11 +44,11 @@ function Read({ route }) {
       .doc(meetingID)
       .collection(user.uid)
       .add({
-        text: `${data.fetchMeeting.title} 에 참가 신청합니다! 같이 먹어요!`,
+        text: `${data.fetchMeeting.title} 에 참가 신청하셨습니다! 곧 확인할게요! 같이 먹어요!`,
         createdAt: firestore.FieldValue.serverTimestamp(),
         user: {
-          user: user.uid,
-          name: user.displayName,
+          user: data?.fetchMeeting?.host?._id,
+          name: data?.fetchMeeting?.host?.name,
           avatar: user.photoURL,
         },
       })
