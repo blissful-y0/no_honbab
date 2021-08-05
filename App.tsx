@@ -8,7 +8,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import TabNavigator from "./pages/navigation/tabNavigator";
 import Landing from "./pages/screens/";
 
-export const AuthContext = createContext({
+interface IContext {
+  user: any;
+  setUser: (_: any) => void;
+}
+
+export const AuthContext = createContext<IContext>({
   user: {},
   setUser: (_: any) => {},
 });

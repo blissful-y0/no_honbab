@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
   DdayCountDown,
@@ -32,9 +31,7 @@ import {
 } from "./MeetingRead.style";
 import { ScrollView } from "react-native";
 
-const ReadUI = ({ data }) => {
-  const navigation = useNavigation();
-
+const ReadUI = ({ data, chatFlag, onClickJoinChat }) => {
   return (
     <ScrollView>
       <MainView>
@@ -97,17 +94,9 @@ const ReadUI = ({ data }) => {
           </MeetingContentsContainer>
         </MeetingInfoContainerWrapper>
         <UploadTouchArea>
-          <UploadButton>
-            <JoinButton
-              onPress={() =>
-                navigation.navigate("채팅", {
-                  meetingId: data?.fetchMeeting?._id,
-                  hostId: data?.fetchMeeting?.host._id,
-                  user: data?.fetchMeeting?.host.name,
-                })
-              }
-            >
-              채팅으로 신청하기
+          <UploadButton disabled={chatFlag} onPress={onClickJoinChat}>
+            <JoinButton>
+              {chatFlag ? "이미 참가 신청 중입니다" : "채팅으로 신청하기"}
             </JoinButton>
           </UploadButton>
         </UploadTouchArea>
