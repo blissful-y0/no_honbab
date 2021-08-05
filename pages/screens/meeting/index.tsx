@@ -1,7 +1,8 @@
 import React from "react";
+import List from "../../../src/components/meeting/list/MeetingList.container";
 
-const MeetingPage = () => {
-  return <></>;
+const MeetingListPage = () => {
+  return <List />;
 };
 
-export default MeetingPage;
+export default MeetingListPage;
