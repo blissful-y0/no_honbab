@@ -1,55 +1,42 @@
 import React from "react";
 import ChatLobbyUI from "./ChatLobby.presenter";
 import { AuthContext } from "../../../../App";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useLayoutEffect } from "react";
 import firestore from "@react-native-firebase/firestore";
 
 function ChatLobby() {
   const { user } = useContext(AuthContext);
   const userRef = firestore().collection("users");
   const chatRef = firestore().collection("chat");
-  const [joinedArray, setJoinedArray] = useState([]);
-  const [messages, setMessages] = useState([]);
-  let message = [];
 
-  useEffect(() => {
-    getJoinedArray();
-    getChannel();
+  const [joinedMeetings, setJoinedMeetings] = useState([
+    "610b77fddaac94002a20d132",
+    "61091048daac94002a20d12a",
+  ]);
+  const [messages, setMessages] = useState([]);
+
+  useLayoutEffect(() => {
+    const subscribe = () => {
+      let messageArray = [];
+      for (let i = 0; i < joinedMeetings.length; i++) {
+        chatRef
+          .doc(joinedMeetings[i])
+          .collection(user.uid)
+          .get()
+          .then((doc) => {
+            doc.docs.forEach((documentSnap) => {
+              messageArray.push(documentSnap.data());
+              if (messageArray.length === joinedMeetings.length) {
+                setMessages(messageArray);
+              }
+            });
+          });
+      }
+    };
+    subscribe();
   }, []);
 
-  const getJoinedArray = async () => {
-    const result = await userRef
-      .doc(user.uid)
-      .get()
-      .then((doc) => setJoinedArray(doc.data().meetingID));
-  };
-
-  const getChannel = async () => {
-    try {
-      let channelList = [...joinedArray];
-      const list = await Promise.all(
-        channelList.map((data) => {
-          chatRef
-            .doc(data)
-            .collection(user.uid)
-            .limit(1)
-            .get()
-            .then((querySnapshot) => {
-              querySnapshot.forEach((documentSnapshot) =>
-                message.push(documentSnapshot.data())
-              );
-              setMessages(message);
-            });
-        })
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  console.log(messages);
-
-  return <ChatLobbyUI user={user} />;
+  return <ChatLobbyUI messages={messages} user={user} />;
 }
 
 export default ChatLobby;
