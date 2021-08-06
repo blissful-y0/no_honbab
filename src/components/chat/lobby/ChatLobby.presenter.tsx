@@ -15,33 +15,51 @@ import {
   LatestMessage,
 } from "./ChatLobby.style";
 
-function ChatLobbyUI({ user }) {
+function ChatLobbyUI({ user, messages }) {
   const navigation = useNavigation();
+  const option = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const today = new Date().toLocaleDateString();
 
   return (
     <MainView>
       <TopAds source={require("../../../../public/chat/chatad.png")} />
       <ScrollView style={{ width: "100%" }}>
-        <ListView>
-          <ChatRoomContainer
-            onPress={() =>
-              navigation.navigate("채팅", { user: user?.displayName })
-            }
-          >
-            <ProfilePhoto
-              source={{ uri: `${user?.photoURL}` }}
-              style={{ borderRadius: 400, width: 50, height: 50 }}
-            />
-            <MessageInfoWrapper>
-              <DisplayNameAndCreatedAtWrapper>
-                <UserName>{user?.displayName}</UserName>
-                <UpdatedAt>2021년 07월 27일</UpdatedAt>
-              </DisplayNameAndCreatedAtWrapper>
-              <LatestMessage>안녕하세요!!</LatestMessage>
-            </MessageInfoWrapper>
-          </ChatRoomContainer>
-          <GreyLine />
-        </ListView>
+        {messages.map((data) => (
+          <ListView key={data?.meetingID}>
+            <ChatRoomContainer
+              onPress={() =>
+                navigation.navigate("채팅", {
+                  userID: data?.user?.user,
+                  user: data?.user?.name,
+                  userAvatar: data?.user?.avatar,
+                  meetingID: data?.meetingID,
+                })
+              }
+            >
+              <ProfilePhoto
+                source={{ uri: `${data?.user?.avatar}` }}
+                style={{ borderRadius: 400, width: 50, height: 50 }}
+              />
+              <MessageInfoWrapper>
+                <DisplayNameAndCreatedAtWrapper>
+                  <UserName>{data?.user?.name}</UserName>
+                  <UpdatedAt>
+                    {data?.createdAt?.toDate().toLocaleDateString() === today
+                      ? data?.createdAt?.toDate().toLocaleTimeString("ko-KR")
+                      : data?.createdAt?.toDate().toLocaleDateString("ko-KR")}
+                  </UpdatedAt>
+                </DisplayNameAndCreatedAtWrapper>
+                <LatestMessage>{data?.text.slice(0, 20) + "..."}</LatestMessage>
+              </MessageInfoWrapper>
+            </ChatRoomContainer>
+            <GreyLine />
+          </ListView>
+        ))}
       </ScrollView>
     </MainView>
   );

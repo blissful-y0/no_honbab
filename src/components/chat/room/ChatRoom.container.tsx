@@ -4,6 +4,8 @@ import { GiftedChat } from "react-native-gifted-chat";
 export function Chat({ route, navigation }) {
   const [messages, setMessages] = useState([]);
 
+  console.log(route.params);
+
   useEffect(() => {
     setMessages([
       {
@@ -12,16 +14,6 @@ export function Chat({ route, navigation }) {
         createdAt: "Tue Jul 27 2021 19:41:32 GMT+0900 (한국 표준시)",
         user: {
           _id: 2,
-          name: "React Native",
-          avatar: "https://placeimg.com/140/140/any",
-        },
-      },
-      {
-        _id: 2,
-        text: "HSADFSDFSADF developer",
-        createdAt: "Tue Jul 25 2021 19:41:32 GMT+0900 (한국 표준시)",
-        user: {
-          _id: 3,
           name: "React Native",
           avatar: "https://placeimg.com/140/140/any",
         },
