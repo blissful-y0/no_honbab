@@ -9,6 +9,7 @@ import ReadUI from "./MeetingRead.presenter";
 import { FETCH_MEETING } from "./MeetingRead.query";
 import firestore from "@react-native-firebase/firestore";
 import { useNavigation } from "@react-navigation/native";
+import { UniqueKeyGegenerator } from "../../../libarires/utils";
 
 function Read({ route }) {
   const { user } = useContext(AuthContext);
@@ -44,6 +45,8 @@ function Read({ route }) {
       .doc(meetingID)
       .collection(user.uid)
       .add({
+        id: UniqueKeyGegenerator(),
+        meetingID: meetingID,
         text: `${data.fetchMeeting.title} 에 참가 신청하셨습니다! 곧 확인할게요! 같이 먹어요!`,
         createdAt: firestore.FieldValue.serverTimestamp(),
         user: {
