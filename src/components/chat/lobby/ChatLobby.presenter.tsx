@@ -51,7 +51,9 @@ function ChatLobbyUI({ user, messages }) {
                   <UpdatedAt>
                     {data?.createdAt?.toDate().toLocaleDateString() === today
                       ? data?.createdAt?.toDate().toLocaleTimeString("ko-KR")
-                      : data?.createdAt?.toDate().toLocaleDateString("ko-KR")}
+                      : data?.createdAt
+                          ?.toDate()
+                          .toLocaleDateString("ko-KR", option)}
                   </UpdatedAt>
                 </DisplayNameAndCreatedAtWrapper>
                 <LatestMessage>{data?.text.slice(0, 20) + "..."}</LatestMessage>
