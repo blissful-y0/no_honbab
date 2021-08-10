@@ -29,39 +29,49 @@ function ChatLobbyUI({ user, messages }) {
     <MainView>
       <TopAds source={require("../../../../public/chat/chatad.png")} />
       <ScrollView style={{ width: "100%" }}>
-        {messages.map((data) => (
-          <ListView key={data?.meetingID}>
-            <ChatRoomContainer
-              onPress={() =>
-                navigation.navigate("채팅", {
-                  userID: data?.user?.user,
-                  user: data?.user?.name,
-                  userAvatar: data?.user?.avatar,
-                  meetingID: data?.meetingID,
-                })
-              }
-            >
-              <ProfilePhoto
-                source={{ uri: `${data?.user?.avatar}` }}
-                style={{ borderRadius: 400, width: 50, height: 50 }}
-              />
-              <MessageInfoWrapper>
-                <DisplayNameAndCreatedAtWrapper>
-                  <UserName>{data?.user?.name}</UserName>
-                  <UpdatedAt>
-                    {data?.createdAt?.toDate().toLocaleDateString() === today
-                      ? data?.createdAt?.toDate().toLocaleTimeString("ko-KR")
-                      : data?.createdAt
-                          ?.toDate()
-                          .toLocaleDateString("ko-KR", option)}
-                  </UpdatedAt>
-                </DisplayNameAndCreatedAtWrapper>
-                <LatestMessage>{data?.text.slice(0, 20) + "..."}</LatestMessage>
-              </MessageInfoWrapper>
-            </ChatRoomContainer>
-            <GreyLine />
-          </ListView>
-        ))}
+        {messages.map(
+          (data) => (
+            console.log(data),
+            (
+              <ListView key={data?.meetingID}>
+                <ChatRoomContainer
+                  onPress={() =>
+                    navigation.navigate("채팅", {
+                      userID: data?.user?.user,
+                      user: data?.user?.name,
+                      userAvatar: data?.user?.avatar,
+                      meetingID: data?.meetingID,
+                    })
+                  }
+                >
+                  <ProfilePhoto
+                    source={{ uri: `${data?.user?.avatar}` }}
+                    style={{ borderRadius: 400, width: 50, height: 50 }}
+                  />
+                  <MessageInfoWrapper>
+                    <DisplayNameAndCreatedAtWrapper>
+                      <UserName>{data?.user?.name}</UserName>
+                      <UpdatedAt>
+                        {data?.createdAt?.toDate().toLocaleDateString() ===
+                        today
+                          ? data?.createdAt
+                              ?.toDate()
+                              .toLocaleTimeString("ko-KR")
+                          : data?.createdAt
+                              ?.toDate()
+                              .toLocaleDateString("ko-KR", option)}
+                      </UpdatedAt>
+                    </DisplayNameAndCreatedAtWrapper>
+                    <LatestMessage>
+                      {data?.text.slice(0, 20) + "..."}
+                    </LatestMessage>
+                  </MessageInfoWrapper>
+                </ChatRoomContainer>
+                <GreyLine />
+              </ListView>
+            )
+          )
+        )}
       </ScrollView>
     </MainView>
   );

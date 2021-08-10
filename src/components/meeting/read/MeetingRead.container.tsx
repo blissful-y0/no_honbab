@@ -45,7 +45,7 @@ function Read({ route }) {
       .doc(meetingID)
       .collection(user.uid)
       .add({
-        id: UniqueKeyGegenerator(),
+        _id: UniqueKeyGegenerator(),
         meetingID: meetingID,
         text: `${data.fetchMeeting.title} 에 참가 신청하셨습니다! 곧 확인할게요! 같이 먹어요!`,
         createdAt: firestore.FieldValue.serverTimestamp(),
