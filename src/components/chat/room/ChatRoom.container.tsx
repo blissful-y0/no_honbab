@@ -7,30 +7,40 @@ import { AuthContext } from "../../../../App";
 export function Chat({ route, navigation }) {
   const [messages, setMessages] = useState([]);
   const { user } = useContext(AuthContext);
-
-  console.log(route.params);
+  const [asdf, setasdf] = useState([]);
 
   useEffect(() => {
     loadMessages();
   }, []);
 
   const loadMessages = async () => {
-    const result = await firestore()
+    const subscribe = firestore()
       .collection("chat")
       .doc(route.params.meetingID)
       .collection(user.uid)
-      .get()
-      .then((querySnap) =>
-        querySnap.forEach((docSnap) => {
-          setMessages(docSnap.data());
-        })
-      );
+      .onSnapshot((snapShot) => {
+        snapShot.docChanges().forEach((change) => {
+          if (change.type == "added") {
+            let data: any = change.doc.data();
+            data.createdAt = data.createdAt.toDate();
+            setMessages((prevMesasges) =>
+              GiftedChat.append(prevMesasges, data)
+            );
+          }
+        });
+      });
+    return () => subscribe;
   };
 
   const onSend = useCallback((messages = []) => {
-    setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, messages)
-    );
+    firestore()
+      .collection("chat")
+      .doc(route.params.meetingID)
+      .collection(user.uid)
+      .add(messages[0]);
+    // setMessages((previousMessages) =>
+    //   GiftedChat.append(previousMessages, messages)
+    // );
   }, []);
 
   return (
@@ -38,7 +48,9 @@ export function Chat({ route, navigation }) {
       messages={messages}
       onSend={(messages) => onSend(messages)}
       user={{
-        _id: 1,
+        _id: user.uid,
+        avatar: user.photoURL,
+        name: user.displayName,
       }}
     />
   );
