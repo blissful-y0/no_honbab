@@ -29,6 +29,7 @@ type iInput = {
 
 function Create() {
   const { user } = useContext(AuthContext);
+  const userRef = firestore().collection("users");
 
   const navigation = useNavigation();
   const options = {
@@ -48,8 +49,8 @@ function Create() {
     title: "",
     dateLimit: 0,
     date: today.toLocaleDateString("ko-KR"),
-    longitude: 127.02761,
-    latitude: 37.498095,
+    longitude: 127.0278037,
+    latitude: 37.499705,
     host: {
       _id: user?.uid,
       name: user?.displayName,

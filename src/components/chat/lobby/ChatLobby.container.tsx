@@ -10,16 +10,16 @@ function ChatLobby() {
   const chatRef = firestore().collection("chat");
 
   const [joinedMeetings, setJoinedMeetings] = useState([
-    "610b77fddaac94002a20d132",
-    "61091048daac94002a20d12a",
+    "61139855242eef0029c0ce0f",
+    "611398d2242eef0029c0ce13",
   ]);
   const [messages, setMessages] = useState([]);
 
   useLayoutEffect(() => {
-    const subscribe = () => {
+    const subscribe = async () => {
       let messageArray = [];
       for (let i = 0; i < joinedMeetings.length; i++) {
-        chatRef
+        await chatRef
           .doc(joinedMeetings[i])
           .collection(user.uid)
           .get()
