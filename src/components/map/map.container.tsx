@@ -14,8 +14,6 @@ function Map() {
     longtitude: 127.02761,
   });
 
-  console.log(data);
-
   return <MapUI initialRegion={initialRegion} data={data} />;
 }
 

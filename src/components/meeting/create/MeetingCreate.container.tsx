@@ -31,6 +31,10 @@ function Create() {
   const { user } = useContext(AuthContext);
   const userRef = firestore().collection("users");
 
+  if (user?.uid === null) {
+    return;
+  }
+
   const navigation = useNavigation();
   const options = {
     year: "numeric",

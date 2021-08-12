@@ -1,4 +1,4 @@
-import styled, { css } from "@emotion/native";
+import styled from "@emotion/native";
 import {
   selectTextColor,
   selectbackgroundColor,
