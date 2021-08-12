@@ -7,7 +7,10 @@ import { AuthContext } from "../../../../App";
 export function Chat({ route, navigation }) {
   const [messages, setMessages] = useState([]);
   const { user } = useContext(AuthContext);
-  const [asdf, setasdf] = useState([]);
+
+  if (user?.uid === null) {
+    return;
+  }
 
   useEffect(() => {
     loadMessages();
@@ -17,7 +20,7 @@ export function Chat({ route, navigation }) {
     const subscribe = firestore()
       .collection("chat")
       .doc(route.params.meetingID)
-      .collection(user.uid)
+      .collection("p8QWLmIzpYQRAoifuFtoXR9cpc53")
       .onSnapshot((snapShot) => {
         snapShot.docChanges().forEach((change) => {
           if (change.type == "added") {
@@ -36,7 +39,7 @@ export function Chat({ route, navigation }) {
     firestore()
       .collection("chat")
       .doc(route.params.meetingID)
-      .collection(user.uid)
+      .collection(user?.uid)
       .add(messages[0]);
     // setMessages((previousMessages) =>
     //   GiftedChat.append(previousMessages, messages)

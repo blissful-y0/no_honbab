@@ -17,13 +17,14 @@ export type ICreateMeetingInput = {
   title: Scalars['String'];
   dateLimit: Scalars['Int'];
   date: Scalars['String'];
-  longitude: Scalars['Float'];
-  latitude: Scalars['Float'];
+  longitude?: Maybe<Scalars['Float']>;
+  latitude?: Maybe<Scalars['Float']>;
   host: IUserInput;
   recruitment: Scalars['Int'];
   foodType: Scalars['String'];
   contents: Scalars['String'];
   address: Scalars['String'];
+  place: Scalars['String'];
 };
 
 
@@ -42,6 +43,7 @@ export type IMeeting = {
   contents: Scalars['String'];
   longitude: Scalars['Float'];
   latitude: Scalars['Float'];
+  place: Scalars['String'];
   createdAt: Scalars['DateTime'];
   updatedAt: Scalars['DateTime'];
   deletedAt?: Maybe<Scalars['DateTime']>;
@@ -52,6 +54,8 @@ export type IMutation = {
   createMeeting: Scalars['ID'];
   updateMeeting: IMeeting;
   deleteMeeting: Scalars['ID'];
+  joinMeeting: Scalars['Boolean'];
+  cancelMeeting: Scalars['Boolean'];
 };
 
 
@@ -70,11 +74,24 @@ export type IMutationDeleteMeetingArgs = {
   meetingId: Scalars['ID'];
 };
 
+
+export type IMutationJoinMeetingArgs = {
+  userInput: IUserInput;
+  meetingId: Scalars['ID'];
+};
+
+
+export type IMutationCancelMeetingArgs = {
+  userId: Scalars['ID'];
+  meetingId: Scalars['ID'];
+};
+
 export type IQuery = {
   __typename?: 'Query';
   fetchMeetings: Array<IMeeting>;
   fetchMeeting: IMeeting;
   fetchMemberCount: Array<IUser>;
+  fetchJoinedMeetings: Array<IMeeting>;
 };
 
 
@@ -95,6 +112,11 @@ export type IQueryFetchMemberCountArgs = {
   meetingId: Scalars['ID'];
 };
 
+
+export type IQueryFetchJoinedMeetingsArgs = {
+  userId: Scalars['ID'];
+};
+
 export type IUpdateMeetingInput = {
   foodType: Scalars['String'];
   dateLimit: Scalars['Int'];
@@ -103,6 +125,7 @@ export type IUpdateMeetingInput = {
   date: Scalars['String'];
   address: Scalars['String'];
   contents: Scalars['String'];
+  place: Scalars['String'];
 };
 
 export type IUser = {
