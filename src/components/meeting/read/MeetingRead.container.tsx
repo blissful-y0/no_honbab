@@ -18,6 +18,10 @@ function Read({ route }) {
   const navigation = useNavigation();
   const [chatFlag, setChatFlag] = useState(false);
 
+  if (user?.uid === null) {
+    return;
+  }
+
   const { data } = useQuery<IQuery, IQueryFetchMeetingArgs>(FETCH_MEETING, {
     variables: {
       meetingId: meetingID,

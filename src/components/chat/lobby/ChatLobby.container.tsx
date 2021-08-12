@@ -9,6 +9,10 @@ function ChatLobby() {
   const userRef = firestore().collection("users");
   const chatRef = firestore().collection("chat");
 
+  if (user?.uid === null) {
+    return;
+  }
+
   const [joinedMeetings, setJoinedMeetings] = useState([
     "61139855242eef0029c0ce0f",
     "611398d2242eef0029c0ce13",
@@ -21,7 +25,7 @@ function ChatLobby() {
       for (let i = 0; i < joinedMeetings.length; i++) {
         await chatRef
           .doc(joinedMeetings[i])
-          .collection(user.uid)
+          .collection("p8QWLmIzpYQRAoifuFtoXR9cpc53")
           .get()
           .then((doc) => {
             doc.docs.forEach((documentSnap) => {
