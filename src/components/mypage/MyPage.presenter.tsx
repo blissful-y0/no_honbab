@@ -73,7 +73,7 @@ function MyPageUI({ user, logOut, data }) {
         </UserInfoWrapper>
       </UserInfoView>
       <InfoDetailView>
-        <ScrollView style={{ width: "100%", height: "100%", marginTop: "2%" }}>
+        <ScrollView style={{ width: "100%", height: "100%" }}>
           {!data ? (
             <NodataView>
               <NodataText>참여한 미팅이 없습니다 ㅠ_ㅠ... </NodataText>

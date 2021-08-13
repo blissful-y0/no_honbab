@@ -6,7 +6,6 @@ import firestore from "@react-native-firebase/firestore";
 
 function ChatLobby() {
   const { user } = useContext(AuthContext);
-  const userRef = firestore().collection("users");
   const chatRef = firestore().collection("chat");
 
   if (user?.uid === null) {
