@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import auth from "@react-native-firebase/auth";
 import { AuthContext } from "../../../App";
 import MyPageUI from "./MyPage.presenter";
-import firestore from "@react-native-firebase/firestore";
 import { FETCH_JOINED_MEETING } from "./MyPage.query";
 import { useQuery } from "@apollo/client";
 import {
@@ -21,7 +20,7 @@ function MyPage() {
     FETCH_JOINED_MEETING,
     {
       variables: {
-        userId: user.uid,
+        userId: user?.uid,
       },
     }
   );
