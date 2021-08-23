@@ -53,8 +53,8 @@ function Create() {
     title: "",
     dateLimit: 0,
     date: today.toLocaleDateString("ko-KR"),
-    longitude: 127.0278037,
-    latitude: 37.499705,
+    longitude: 127.02747832593802,
+    latitude: 37.49949717284727,
     host: {
       _id: user?.uid,
       name: user?.displayName,
