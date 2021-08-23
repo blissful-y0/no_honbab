@@ -13,7 +13,6 @@ function ChatLobby() {
   }
 
   const [joinedMeetings, setJoinedMeetings] = useState([
-    "61139855242eef0029c0ce0f",
     "611398d2242eef0029c0ce13",
   ]);
   const [messages, setMessages] = useState([]);
@@ -24,7 +23,7 @@ function ChatLobby() {
       for (let i = 0; i < joinedMeetings.length; i++) {
         await chatRef
           .doc(joinedMeetings[i])
-          .collection("p8QWLmIzpYQRAoifuFtoXR9cpc53")
+          .collection(user.uid)
           .get()
           .then((doc) => {
             doc.docs.forEach((documentSnap) => {

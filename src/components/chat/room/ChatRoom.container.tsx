@@ -20,7 +20,7 @@ export function Chat({ route, navigation }) {
     const subscribe = firestore()
       .collection("chat")
       .doc(route.params.meetingID)
-      .collection("p8QWLmIzpYQRAoifuFtoXR9cpc53")
+      .collection(user.uid)
       .onSnapshot((snapShot) => {
         snapShot.docChanges().forEach((change) => {
           if (change.type == "added") {
